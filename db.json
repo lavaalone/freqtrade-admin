@@ -1,19 +1,80 @@
 {
-  "posts": [
+  "bots": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "bot_name": "bot 1",
+      "profit_usd": 100.0,
+      "profit_per": 6.8,
+      "total_trades": 30,
+      "win_trades": 18,
+      "lose_trades": 12
+    },
+    {
+      "id": 2,
+      "bot_name": "bot 2",
+      "profit_usd": 170.0,
+      "profit_per": 6.18,
+      "total_trades": 60,
+      "win_trades": 50,
+      "lose_trades": 10
+    },
+    {
+      "id": 3,
+      "bot_name": "bot 3",
+      "profit_usd": 69.0,
+      "profit_per": 17.8,
+      "total_trades": 30,
+      "win_trades": 18,
+      "lose_trades": 12
     }
   ],
-  "comments": [
+  "trades": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "time": "2021 Oct 9, 18:29:00",
+      "pair": "BTC/USDT",
+      "profit_usd": 10.0,
+      "profit_per": 3.5,
+      "status": "closed"
+    },
+    {
+      "id": 2,
+      "time": "2021 Oct 10, 19:29:00",
+      "pair": "ADA/USDT",
+      "profit_usd": 10.0,
+      "profit_per": 3.5,
+      "status": "closed"
+    },
+    {
+      "id": 3,
+      "time": "2021 Oct 11, 21:29:00",
+      "pair": "XRP/USDT",
+      "profit_usd": 10.0,
+      "profit_per": 3.5,
+      "status": "open"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "balance": [
+    {
+      "id": 1,
+      "currency": "USDT",
+      "amount": 1000.0,
+      "amount_usd": 1000.0,
+      "free": 900.0
+    },
+    {
+      "id": 2,
+      "currency": "BTC",
+      "amount": 3.0,
+      "amount_usd": 150000.0,
+      "free": 150000.0
+    },
+    {
+      "id": 3,
+      "currency": "ETH",
+      "amount": 10.0,
+      "amount_usd": 35000.0,
+      "free": 35000.0
+    }
+  ]
 }
