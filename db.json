@@ -7,7 +7,8 @@
       "profit_per": 6.8,
       "total_trades": 30,
       "win_trades": 18,
-      "lose_trades": 12
+      "lose_trades": 12,
+      "status": "running"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "profit_per": 6.18,
       "total_trades": 60,
       "win_trades": 50,
-      "lose_trades": 10
+      "lose_trades": 10,
+      "status": "reload_config"
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "profit_per": 17.8,
       "total_trades": 30,
       "win_trades": 18,
-      "lose_trades": 12
+      "lose_trades": 12,
+      "status": "stopping"
     }
   ],
   "trades": [
@@ -35,7 +38,8 @@
       "pair": "BTC/USDT",
       "profit_usd": 10.0,
       "profit_per": 3.5,
-      "status": "closed"
+      "status": "closed",
+      "exchange": "binance"
     },
     {
       "id": 2,
@@ -43,7 +47,8 @@
       "pair": "ADA/USDT",
       "profit_usd": 10.0,
       "profit_per": 3.5,
-      "status": "closed"
+      "status": "closed",
+      "exchange": "binance"
     },
     {
       "id": 3,
@@ -51,7 +56,8 @@
       "pair": "XRP/USDT",
       "profit_usd": 10.0,
       "profit_per": 3.5,
-      "status": "open"
+      "status": "open",
+      "exchange": "kucoin"
     }
   ],
   "balance": [

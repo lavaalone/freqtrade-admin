@@ -23,6 +23,7 @@ const Bots = ({data}) => {
                             <p><Text strong>Total Trades</Text>: {bot.total_trades}</p>
                             <p><Text strong>Winning Trades</Text>: {bot.win_trades}</p>
                             <p><Text strong>Losing Trades</Text>: {bot.lose_trades}</p>
+                            <p><Text strong>Status</Text>: {bot.status}</p>
                             <p><Text strong>Reload Config</Text>: <Button type='submit' onClick={() => executeCommand(bot, 'reload')}>Reload</Button></p>
                             <p><Text strong>Start the bot</Text>: <Button type='submit' onClick={() => executeCommand(bot, 'start')}>Start</Button></p>
                             <p><Text strong>Stop the bot</Text>: <Button type='submit' onClick={() => executeCommand(bot,'stop')}>Stop</Button></p>
