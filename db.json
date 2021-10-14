@@ -60,6 +60,35 @@
       "exchange": "kucoin"
     }
   ],
+  "orders": [
+    {
+      "id": 1,
+      "time": "2021 Oct 9, 18:29:00",
+      "pair": "BTC/USDT",
+      "profit_usd": 10.0,
+      "profit_per": 3.5,
+      "status": "closed",
+      "exchange": "binance"
+    },
+    {
+      "id": 2,
+      "time": "2021 Oct 10, 19:29:00",
+      "pair": "ADA/USDT",
+      "profit_usd": 10.0,
+      "profit_per": 3.5,
+      "status": "closed",
+      "exchange": "binance"
+    },
+    {
+      "id": 3,
+      "time": "2021 Oct 11, 21:29:00",
+      "pair": "XRP/USDT",
+      "profit_usd": 10.0,
+      "profit_per": 3.5,
+      "status": "open",
+      "exchange": "kucoin"
+    }
+  ],
   "balance": [
     {
       "id": 1,

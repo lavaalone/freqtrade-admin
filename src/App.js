@@ -6,11 +6,15 @@ import Bots from './components/Bots';
 import Trades from './components/Trades';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Link } from "react-router-dom"
+import Orders from './components/Orders';
+import History from './components/History';
 
 function App() {
   const { Header, Content } = Layout;
   const [botData, setBotData] = useState([])
   const [tradeData, setTradeData] = useState([])
+  const [orderData, setOrderData] = useState([])
+  const [historyData, setHistoryData] = useState([])
 
   const FetchBotData = async() => {
     const resp = await fetch('http://localhost:5000/bots')
@@ -20,7 +24,21 @@ function App() {
   }
 
   const FetchTradeData = async() => {
-    const resp = await fetch('http://localhost:5000/trades')
+    const resp = await fetch('http://localhost:5000/trades?status=open')
+    const data = await resp.json()
+    console.log(data)
+    return data
+  }
+
+  const FetchOrderData = async() => {
+    const resp = await fetch('http://localhost:5000/orders')
+    const data = await resp.json()
+    console.log(data)
+    return data
+  }
+
+  const FetchHistoryData = async() => {
+    const resp = await fetch('http://localhost:5000/trades?status=closed')
     const data = await resp.json()
     console.log(data)
     return data
@@ -36,9 +54,28 @@ function App() {
       const dataFromServer = await FetchTradeData()
       setTradeData(dataFromServer)
     }
+
+    const getOrderData = async () => {
+      const dataFromServer = await FetchOrderData()
+      setOrderData(dataFromServer)
+    }
+
+    const getHistoryData = async () => {
+      const dataFromServer = await FetchHistoryData()
+      setHistoryData(dataFromServer)
+    }
   
     getBotData()
     getTradeData()
+    getOrderData()
+    getHistoryData()
+
+    setInterval(() => {
+      getBotData()
+      getTradeData()
+      getOrderData()
+      getHistoryData()
+    }, 30000);
   }, [])
 
   return (
@@ -72,13 +109,13 @@ function App() {
         <Trades data={tradeData}/>
       )} />
       <Route path='/orders' exact render={(props) => (
-        <p> Orders </p>
+        <Orders data={orderData}/>
       )} />
       <Route path='/wallet' exact render={(props) => (
         <p> Wallet </p>
       )} />
             <Route path='/history' exact render={(props) => (
-        <p> History </p>
+        <History data={historyData} />
       )} />
     </Content>
       </Layout>

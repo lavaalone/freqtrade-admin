@@ -1,7 +1,7 @@
 import { Button, Space } from 'antd';
 import { Row, Col, Card,Typography } from 'antd';
 
-const Trades = ({data}) => {
+const History = ({data}) => {
     const { Text } = Typography;
 
     const executeCommand = async (trade, action) => {
@@ -33,4 +33,4 @@ const Trades = ({data}) => {
     )
 }
 
-export default Trades
+export default History
