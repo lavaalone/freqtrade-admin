@@ -14,7 +14,7 @@ function App() {
   // json-server
   // const apiEndpoint = 'http://localhost:5000';
   // api server
-  const apiEndpoint = 'http://localhost:8300/tet';
+  const apiEndpoint = 'http://10.25.96.4:9000/tet';
 
   const { Header, Content } = Layout;
   const [botData, setBotData] = useState([])
