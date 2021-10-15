@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Link } from "react-router-dom"
 import Orders from './components/Orders';
 import History from './components/History';
+import Dashboard from './components/Dashboard';
 
 function App() {
   const { Header, Content } = Layout;
@@ -15,6 +16,7 @@ function App() {
   const [tradeData, setTradeData] = useState([])
   const [orderData, setOrderData] = useState([])
   const [historyData, setHistoryData] = useState([])
+  const [dashboardData, setDashboardData] = useState()
 
   const FetchBotData = async() => {
     const resp = await fetch('http://localhost:5000/bots')
@@ -44,6 +46,13 @@ function App() {
     return data
   }
 
+  const FetchDashboardData = async() => {
+    const resp = await fetch('http://localhost:5000/dashboard')
+    const data = await resp.json()
+    console.log(data)
+    return data
+  }
+
   useEffect(() => {
     const getBotData = async () => {
       const dataFromServer = await FetchBotData()
@@ -64,17 +73,24 @@ function App() {
       const dataFromServer = await FetchHistoryData()
       setHistoryData(dataFromServer)
     }
+
+    const getDashboardData = async () => {
+      const dataFromServer = await FetchDashboardData()
+      setDashboardData(dataFromServer)
+    }
   
     getBotData()
     getTradeData()
     getOrderData()
     getHistoryData()
+    getDashboardData()
 
     setInterval(() => {
       getBotData()
       getTradeData()
       getOrderData()
       getHistoryData()
+      getDashboardData()
     }, 30000);
   }, [])
 
@@ -83,9 +99,12 @@ function App() {
   <Layout className="layout">
     <Header>
       <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
+      < Menu.Item key='0'>
+          <Link to='/'>Dashboard </Link> 
+          </Menu.Item>
         < Menu.Item key='1'>
-          <Link to='/'>Bots </Link> 
+          <Link to='/bots'>Bots </Link> 
           </Menu.Item>
         < Menu.Item key='2'>
         <Link to='/trades'>Trades</Link> 
@@ -103,6 +122,9 @@ function App() {
     </Header>
     <Content style={{ padding: '0 50px' }}>
       <Route path='/' exact render={(props) => (
+        <Dashboard data={dashboardData}/>
+      )} />
+      <Route path='/bots' exact render={(props) => (
         <Bots data={botData}/>
       )} />
       <Route path='/trades' exact render={(props) => (

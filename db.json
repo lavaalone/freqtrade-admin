@@ -1,5 +1,17 @@
 {
-  "bots": [
+  "dashboard": {
+    "current": {
+      "finalProfit": 51.608237013700005,
+      "totalTrades": 2,
+      "profitPercentage": 0.49
+    },
+    "total": {
+      "finalProfit": 690.14,
+      "balance": 13969.36,
+      "percentProfit": 6.57
+    }
+  },
+    "bots": [
     {
       "id": 1,
       "bot_name": "bot 1",
