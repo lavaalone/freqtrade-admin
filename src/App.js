@@ -11,43 +11,49 @@ import History from './components/History';
 import Dashboard from './components/Dashboard';
 
 function App() {
+  // json-server
+  // const apiEndpoint = 'http://localhost:5000';
+  // api server
+  const apiEndpoint = 'http://localhost:8300/tet';
+
   const { Header, Content } = Layout;
   const [botData, setBotData] = useState([])
   const [tradeData, setTradeData] = useState([])
   const [orderData, setOrderData] = useState([])
   const [historyData, setHistoryData] = useState([])
   const [dashboardData, setDashboardData] = useState()
+  
 
   const FetchBotData = async() => {
-    const resp = await fetch('http://localhost:5000/bots')
+    const resp = await fetch(`${apiEndpoint}/bots`)
     const data = await resp.json()
     console.log(data)
     return data
   }
 
   const FetchTradeData = async() => {
-    const resp = await fetch('http://localhost:5000/trades?status=open')
+    const resp = await fetch(`${apiEndpoint}/trades?status=open`)
     const data = await resp.json()
     console.log(data)
     return data
   }
 
   const FetchOrderData = async() => {
-    const resp = await fetch('http://localhost:5000/orders')
+    const resp = await fetch(`${apiEndpoint}/orders`)
     const data = await resp.json()
     console.log(data)
     return data
   }
 
   const FetchHistoryData = async() => {
-    const resp = await fetch('http://localhost:5000/trades?status=closed')
+    const resp = await fetch(`${apiEndpoint}/trades?status=closed`)
     const data = await resp.json()
     console.log(data)
     return data
   }
 
   const FetchDashboardData = async() => {
-    const resp = await fetch('http://localhost:5000/dashboard')
+    const resp = await fetch(`${apiEndpoint}/dashboard`)
     const data = await resp.json()
     console.log(data)
     return data
