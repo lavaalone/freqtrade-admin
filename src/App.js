@@ -32,7 +32,7 @@ function App() {
   }
 
   const FetchTradeData = async() => {
-    const resp = await fetch(`${apiEndpoint}/trades?status=open`)
+    const resp = await fetch(`${apiEndpoint}/trades`)
     const data = await resp.json()
     console.log(data)
     return data
@@ -46,7 +46,7 @@ function App() {
   }
 
   const FetchHistoryData = async() => {
-    const resp = await fetch(`${apiEndpoint}/trades?status=closed`)
+    const resp = await fetch(`${apiEndpoint}/history`)
     const data = await resp.json()
     console.log(data)
     return data
@@ -109,26 +109,31 @@ function App() {
       < Menu.Item key='0'>
           <Link to='/'>Dashboard </Link> 
           </Menu.Item>
+
           < Menu.Item key='1'>
         <Link to='/trades'>Trades</Link> 
           </Menu.Item>
+
         < Menu.Item key='2'>
-          <Link to='/bots'>Bots </Link> 
-          </Menu.Item>
-        < Menu.Item key='3'>
         <Link to='/orders'>Orders</Link> 
           </Menu.Item>
+
+          < Menu.Item key='3'>
+        <Link to='/history'>History</Link> 
+          </Menu.Item>
+
         < Menu.Item key='4'>
         <Link to='/wallet'>Wallet</Link> 
           </Menu.Item>
+
           < Menu.Item key='5'>
-        <Link to='/history'>History</Link> 
+          <Link to='/bots'>Bots </Link> 
           </Menu.Item>
       </Menu>
     </Header>
     <Content style={{ padding: '0 50px' }}>
       <Route path='/' exact render={(props) => (
-        <Dashboard dataDashboard={dashboardData} dataTrades={tradeData}/>
+        <Dashboard dataDashboard={dashboardData} dataTrades={tradeData} dataOrders={orderData}/>
       )} />
       <Route path='/bots' exact render={(props) => (
         <Bots data={botData}/>
