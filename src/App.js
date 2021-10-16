@@ -14,7 +14,7 @@ function App() {
   // json-server
   // const apiEndpoint = 'http://localhost:5000';
   // api server
-  const apiEndpoint = 'http://202.182.100.37:9000/tet';
+  const apiEndpoint = 'http://202.182.100.37/tet';
 
   const { Header, Content } = Layout;
   const [botData, setBotData] = useState([])
@@ -109,11 +109,11 @@ function App() {
       < Menu.Item key='0'>
           <Link to='/'>Dashboard </Link> 
           </Menu.Item>
-        < Menu.Item key='1'>
-          <Link to='/bots'>Bots </Link> 
+          < Menu.Item key='1'>
+        <Link to='/trades'>Trades</Link> 
           </Menu.Item>
         < Menu.Item key='2'>
-        <Link to='/trades'>Trades</Link> 
+          <Link to='/bots'>Bots </Link> 
           </Menu.Item>
         < Menu.Item key='3'>
         <Link to='/orders'>Orders</Link> 
@@ -128,7 +128,7 @@ function App() {
     </Header>
     <Content style={{ padding: '0 50px' }}>
       <Route path='/' exact render={(props) => (
-        <Dashboard data={dashboardData}/>
+        <Dashboard dataDashboard={dashboardData} dataTrades={tradeData}/>
       )} />
       <Route path='/bots' exact render={(props) => (
         <Bots data={botData}/>

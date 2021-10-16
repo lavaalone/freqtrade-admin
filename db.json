@@ -9,7 +9,19 @@
       "finalProfit": 690.14,
       "balance": 13969.36,
       "percentProfit": 6.57
-    }
+    },
+    "wallet": [
+      {
+      "exchange": "Binance",
+      "totalBalance": 8491.682249342317,
+      "freeUSDTBalance": 160.66902342
+      },
+      {
+      "exchange": "Kucoin",
+      "totalBalance": 5504.4167611804105,
+      "freeUSDTBalance": 2018.21395429
+      }
+      ]
   },
     "bots": [
     {
