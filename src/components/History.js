@@ -17,7 +17,7 @@ const History = ({data}) => {
             {data.map((trade) => (
                     <Col span={6} xs={24} xl={6}>
                     <Space>
-                        <Card title={trade.pair + " (" + trade.close_profit_pct + "%)"} style={{ width: 300 }}>
+                        <Card title={trade.trade_id + ". " + trade.pair + " (" + trade.close_profit_pct + "%)"} style={{ width: 300 }}>
                             <p><Text strong>Profit (USD)</Text>: {trade.close_profit_abs.toString().substring(0,6)}</p>
                             {/* <p><Text strong>Profit (%)</Text>: {trade.profit_pct + "%"}</p> */}
                             {/* <p><Text strong>Rate (USD)</Text>: {trade.open_rate + " / " + trade.current_rate}</p> */}

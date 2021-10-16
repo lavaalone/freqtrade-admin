@@ -122,31 +122,31 @@ function App() {
         <Link to='/history'>History</Link> 
           </Menu.Item>
 
-        < Menu.Item key='4'>
+        {/* < Menu.Item key='4'>
         <Link to='/wallet'>Wallet</Link> 
           </Menu.Item>
 
           < Menu.Item key='5'>
           <Link to='/bots'>Bots </Link> 
-          </Menu.Item>
+          </Menu.Item> */}
       </Menu>
     </Header>
     <Content style={{ padding: '0 50px' }}>
       <Route path='/' exact render={(props) => (
-        <Dashboard dataDashboard={dashboardData} dataTrades={tradeData} dataOrders={orderData}/>
+        <Dashboard dataDashboard={dashboardData} dataTrades={tradeData} dataOrders={orderData} dataHistory={historyData}/>
       )} />
-      <Route path='/bots' exact render={(props) => (
+      {/* <Route path='/bots' exact render={(props) => (
         <Bots data={botData}/>
-      )} />
+      )} /> */}
       <Route path='/trades' exact render={(props) => (
         <Trades data={tradeData}/>
       )} />
       <Route path='/orders' exact render={(props) => (
         <Orders data={orderData}/>
       )} />
-      <Route path='/wallet' exact render={(props) => (
+      {/* <Route path='/wallet' exact render={(props) => (
         <p> Wallet </p>
-      )} />
+      )} /> */}
             <Route path='/history' exact render={(props) => (
         <History data={historyData} />
       )} />
