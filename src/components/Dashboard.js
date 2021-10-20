@@ -2,7 +2,7 @@ import { Button, Space } from 'antd';
 import { Row, Col, Card,Typography } from 'antd';
 import { Link } from "react-router-dom"
 
-const Dashboard = ({dataDashboard, dataTrades, dataOrders, dataHistory}) => {
+const Dashboard = ({dataDashboard, dataTrades, dataOrders, dataHistory, dataPlanB}) => {
     const { Text } = Typography;
     
     return (
@@ -63,6 +63,17 @@ const Dashboard = ({dataDashboard, dataTrades, dataOrders, dataHistory}) => {
                         >
                         {dataHistory && dataHistory.map((trade) => (
                             <p><Text strong>{trade.trade_id + ". " + trade.pair}</Text>: {trade.close_profit_abs.toString().substring(0,6) + " (" + trade.profit_pct + "%)"}</p>
+                        ))}
+                        </Card>
+                    </Space>
+                </Col>
+                <Col span={6} xs={24} xl={6}>
+                    <Space>
+                        <Card title='Plan B History' style={{ width: 300 }}
+                        extra={<Link to='/plan-b'><Button>View more</Button></Link>}
+                        >
+                        {dataPlanB && dataPlanB.map((planBOrder) => (
+                            <p><Text strong>{planBOrder.id + ". " + planBOrder.base + "/" + planBOrder.counter + "(" + planBOrder.status + ")"}</Text>: {planBOrder.originalAmount.toString().substring(0,6) + " at $" + planBOrder.originalOpenRate.toString().substring(0,6) + ""}</p>
                         ))}
                         </Card>
                     </Space>

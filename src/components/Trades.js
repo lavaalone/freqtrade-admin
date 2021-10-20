@@ -1,15 +1,27 @@
 import { Space } from 'antd';
-import { Row, Col, Card,Typography } from 'antd';
+import { Row, Col, Card, Typography, Button } from 'antd';
+import { Popconfirm, message } from 'antd';
 
-const Trades = ({data}) => {
+const Trades = ({data, apiEndpoint}) => {
     const { Text } = Typography;
 
-    // const executeCommand = async (trade, action) => {
-    //     // const resp = await fetch(`http://localhost:5000/trades?action=${action}&trade_id=${trade.id}`)
-    //     // const data = await resp.json()
-    //     console.log(action)
-    //     return data
-    //   }
+    const forcesell = async (trade) => {
+        message.success('Click on Yes');
+        const resp = await fetch(`${apiEndpoint}/bot/force-sell?botName=${trade.bot_name}&tradeID=${trade.trade_id}`)
+        // const data = await resp.json()
+        // message.success(data);
+    }
+
+    const activatePlanB = async (trade) => {
+        message.success('Click on Yes');
+        const resp = await fetch(`${apiEndpoint}/order/activate-plan-b?botName=${trade.bot_name}&tradeID=${trade.trade_id}`)
+        // const data = await resp.json()
+        // message.success(data);
+    }
+
+    const cancel = () => {
+        message.error('Click on No');
+    }
 
     return (
         <>
@@ -29,14 +41,29 @@ const Trades = ({data}) => {
                             <p><Text strong>Bot</Text>: {trade.bot_name}</p>
                             {/* <p><Text strong>Strategy</Text>: {trade.strategy}</p> */}
                             <p><Text strong>Trade Time</Text>: {trade.trade_elapsed_hr + " hours ago"}</p>
-                            {/* <p>
+                            <p>
                                 <Space>
-                                    <Button type='submit' onClick={() => executeCommand(trade, 'forcesell')}>Force Sell</Button>
-                                    <Button type='submit' onClick={() => executeCommand(trade, 'delete')}>Delete</Button>
-                                    <Button type='submit' onClick={() => executeCommand(trade, 'hold_1')}>Hold + 1%</Button>
+                                    <Popconfirm
+                                        title="Are you sure to force sell this trade?"
+                                        onConfirm={() => forcesell(trade)}
+                                        onCancel={cancel}
+                                        okText="Yes"
+                                        cancelText="No"
+                                    >
+                                        <Button type='submit'>Force Sell</Button>
+                                    </Popconfirm>
+
+                                    <Popconfirm
+                                        title="Are you sure to activate Plan B for this trade?"
+                                        onConfirm={() => activatePlanB(trade)}
+                                        onCancel={cancel}
+                                        okText="Yes"
+                                        cancelText="No"
+                                    >
+                                        <Button type='submit'>Activate Plan B</Button>
+                                    </Popconfirm>
                                 </Space>
-                            </p> */}
-                            {/* <p><Text strong>Delete</Text>: </p> */}
+                            </p>
                             </Card>
                             </Space>
                     </Col>

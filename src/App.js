@@ -9,12 +9,15 @@ import { Link } from "react-router-dom"
 import Orders from './components/Orders';
 import History from './components/History';
 import Dashboard from './components/Dashboard';
+import PlanB from './components/PlanB';
 
 function App() {
   // json-server
   // const apiEndpoint = 'http://localhost:5000';
-  // api server
-  const apiEndpoint = 'http://tet.thinhnguyen.me/tet';
+  // api server PROD
+  const apiEndpoint = 'http://tet.thinhnguyen.me';
+  // api server DEV
+  // const apiEndpoint = 'http://localhost:9000';
 
   const { Header, Content } = Layout;
   const [botData, setBotData] = useState([])
@@ -22,38 +25,45 @@ function App() {
   const [orderData, setOrderData] = useState([])
   const [historyData, setHistoryData] = useState([])
   const [dashboardData, setDashboardData] = useState()
+  const [planBData, setPlanBData] = useState([])
   
-
   const FetchBotData = async() => {
-    const resp = await fetch(`${apiEndpoint}/bots`)
+    const resp = await fetch(`${apiEndpoint}/tet/bots`)
     const data = await resp.json()
     console.log(data)
     return data
   }
 
   const FetchTradeData = async() => {
-    const resp = await fetch(`${apiEndpoint}/trades`)
+    const resp = await fetch(`${apiEndpoint}/tet/trades`)
     const data = await resp.json()
     console.log(data)
     return data
   }
 
   const FetchOrderData = async() => {
-    const resp = await fetch(`${apiEndpoint}/orders`)
+    const resp = await fetch(`${apiEndpoint}/tet/orders`)
     const data = await resp.json()
     console.log(data)
     return data
   }
 
   const FetchHistoryData = async() => {
-    const resp = await fetch(`${apiEndpoint}/history`)
+    const resp = await fetch(`${apiEndpoint}/tet/history`)
     const data = await resp.json()
     console.log(data)
     return data
   }
 
   const FetchDashboardData = async() => {
-    const resp = await fetch(`${apiEndpoint}/dashboard`)
+    const resp = await fetch(`${apiEndpoint}/tet/dashboard`)
+    const data = await resp.json()
+    console.log(data)
+    return data
+  }
+
+  const FetchPlanBData = async() => {
+    const resp = await fetch(`${apiEndpoint}/order/get-plan-b`)
     const data = await resp.json()
     console.log(data)
     return data
@@ -84,12 +94,18 @@ function App() {
       const dataFromServer = await FetchDashboardData()
       setDashboardData(dataFromServer)
     }
+
+    const getPlanBData = async () => {
+      const dataFromServer = await FetchPlanBData()
+      setPlanBData(dataFromServer)
+    }
   
     getBotData()
     getTradeData()
     getOrderData()
     getHistoryData()
     getDashboardData()
+    getPlanBData()
 
     setInterval(() => {
       getBotData()
@@ -97,6 +113,7 @@ function App() {
       getOrderData()
       getHistoryData()
       getDashboardData()
+      getPlanBData()
     }, 30000);
   }, [])
 
@@ -122,11 +139,15 @@ function App() {
         <Link to='/history'>History</Link> 
           </Menu.Item>
 
-        {/* < Menu.Item key='4'>
-        <Link to='/wallet'>Wallet</Link> 
+          < Menu.Item key='4'>
+        <Link to='/plan-b'>Plan B</Link> 
           </Menu.Item>
 
-          < Menu.Item key='5'>
+        {/* < Menu.Item key='4'>
+        <Link to='/wallet'>Wallet</Link> 
+          </Menu.Item> */}
+
+          {/* < Menu.Item key='5'>
           <Link to='/bots'>Bots </Link> 
           </Menu.Item> */}
       </Menu>
@@ -135,20 +156,17 @@ function App() {
       <Route path='/' exact render={(props) => (
         <Dashboard dataDashboard={dashboardData} dataTrades={tradeData} dataOrders={orderData} dataHistory={historyData}/>
       )} />
-      {/* <Route path='/bots' exact render={(props) => (
-        <Bots data={botData}/>
-      )} /> */}
       <Route path='/trades' exact render={(props) => (
-        <Trades data={tradeData}/>
+        <Trades data={tradeData} apiEndpoint={apiEndpoint}/>
       )} />
       <Route path='/orders' exact render={(props) => (
-        <Orders data={orderData}/>
+        <Orders data={orderData} apiEndpoint={apiEndpoint}/>
       )} />
-      {/* <Route path='/wallet' exact render={(props) => (
-        <p> Wallet </p>
-      )} /> */}
-            <Route path='/history' exact render={(props) => (
+          <Route path='/history' exact render={(props) => (
         <History data={historyData} />
+      )} />
+          <Route path='/plan-b' exact render={(props) => (
+        <PlanB data={planBData} />
       )} />
     </Content>
       </Layout>
