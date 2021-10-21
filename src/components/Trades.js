@@ -6,17 +6,15 @@ const Trades = ({data, apiEndpoint}) => {
     const { Text } = Typography;
 
     const forcesell = async (trade) => {
-        message.success('Click on Yes');
         const resp = await fetch(`${apiEndpoint}/bot/force-sell?botName=${trade.bot_name}&tradeID=${trade.trade_id}`)
-        // const data = await resp.json()
-        // message.success(data);
+        const data = await resp.text()
+        message.success(data);
     }
 
     const activatePlanB = async (trade) => {
-        message.success('Click on Yes');
         const resp = await fetch(`${apiEndpoint}/order/activate-plan-b?botName=${trade.bot_name}&tradeID=${trade.trade_id}`)
-        // const data = await resp.json()
-        // message.success(data);
+        const data = await resp.text()
+        message.success(data);
     }
 
     const cancel = () => {

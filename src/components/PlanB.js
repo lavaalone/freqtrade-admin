@@ -6,8 +6,9 @@ const PlanB = ({data, apiEndpoint}) => {
     const { Text } = Typography;
 
     const startRecover = async (planBOrder) => {
-        message.success('Click on Yes');
         const resp = await fetch(`${apiEndpoint}/order/recover-plan-b?planBId=${planBOrder.id}`)
+        const data = await resp.text()
+        message.success(data);
     }
 
     const cancel = () => {

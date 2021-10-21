@@ -154,7 +154,7 @@ function App() {
     </Header>
     <Content style={{ padding: '0 50px' }}>
       <Route path='/' exact render={(props) => (
-        <Dashboard dataDashboard={dashboardData} dataTrades={tradeData} dataOrders={orderData} dataHistory={historyData}/>
+        <Dashboard dataDashboard={dashboardData} dataTrades={tradeData} dataOrders={orderData} dataHistory={historyData} dataPlanB={planBData}/>
       )} />
       <Route path='/trades' exact render={(props) => (
         <Trades data={tradeData} apiEndpoint={apiEndpoint}/>

@@ -6,13 +6,16 @@ const Orders = ({data, apiEndpoint}) => {
     const { Text } = Typography;
 
     const cancelOrder = async (order) => {
-        message.success('Click on Yes');
         const resp = await fetch(`${apiEndpoint}/order/cancel?exchange=${order.o_exchange}&orderID=${order.o_id}`)
+        const data = await resp.text()
+        message.success(data);
     }
 
     const fastSell = async (order) => {
         message.success('Click on Yes');
         const resp = await fetch(`${apiEndpoint}/order/fast-sell?exchange=${order.o_exchange}&orderID=${order.o_id}`)
+        const data = await resp.text()
+        message.success(data);
     }
 
     const cancel = () => {

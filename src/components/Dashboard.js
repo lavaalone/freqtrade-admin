@@ -69,11 +69,11 @@ const Dashboard = ({dataDashboard, dataTrades, dataOrders, dataHistory, dataPlan
                 </Col>
                 <Col span={6} xs={24} xl={6}>
                     <Space>
-                        <Card title='Plan B History' style={{ width: 300 }}
+                        <Card title='Plan B' style={{ width: 300 }}
                         extra={<Link to='/plan-b'><Button>View more</Button></Link>}
                         >
                         {dataPlanB && dataPlanB.map((planBOrder) => (
-                            <p><Text strong>{planBOrder.id + ". " + planBOrder.base + "/" + planBOrder.counter + "(" + planBOrder.status + ")"}</Text>: {planBOrder.originalAmount.toString().substring(0,6) + " at $" + planBOrder.originalOpenRate.toString().substring(0,6) + ""}</p>
+                            <p><Text strong>{planBOrder.id + ". " + planBOrder.base + "/" + planBOrder.counter + "(" + planBOrder.status + ")"}</Text>: {planBOrder.originalAmount.toString().substring(0,6) + " at $" + planBOrder.originalOpenRate.toString().substring(0,6)}</p>
                         ))}
                         </Card>
                     </Space>
