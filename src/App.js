@@ -166,7 +166,7 @@ function App() {
         <History data={historyData} />
       )} />
           <Route path='/plan-b' exact render={(props) => (
-        <PlanB data={planBData} />
+        <PlanB data={planBData} apiEndpoint={apiEndpoint}/>
       )} />
     </Content>
       </Layout>
