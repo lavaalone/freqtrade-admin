@@ -114,7 +114,7 @@ function App() {
       getHistoryData()
       getDashboardData()
       getPlanBData()
-    }, 30000);
+    }, 5000);
   }, [])
 
   return (
