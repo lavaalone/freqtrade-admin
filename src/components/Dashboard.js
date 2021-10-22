@@ -4,6 +4,17 @@ import { Link } from "react-router-dom"
 
 const Dashboard = ({dataDashboard, dataTrades, dataOrders, dataHistory, dataPlanB}) => {
     const { Text } = Typography;
+
+    const computeTextStyleByProfitPercent = (percent) => {
+        const num = Number(percent);
+        if (num > 0) {
+            return 'success'
+        } else if (num <= 0 && num > -5) {
+            return 'warning'
+        } else {
+            return "danger"
+        }
+    }
     
     return (
         <>
@@ -40,7 +51,7 @@ const Dashboard = ({dataDashboard, dataTrades, dataOrders, dataHistory, dataPlan
                         extra={<Link to='/trades'><Button>View more</Button></Link>}
                         >
                         {dataTrades && dataTrades.map((trade) => (
-                            <p><Text strong>{trade.pair}</Text>: {trade.profit_fiat.substring(0,6) + " (" + trade.profit_pct + "%)"}</p>
+                            <p ><Text strong type={computeTextStyleByProfitPercent(trade.profit_pct)}>{trade.pair}</Text> <Text type={computeTextStyleByProfitPercent(trade.profit_pct)}>: {trade.profit_fiat.substring(0,6) + " (" + trade.profit_pct + "%)"}</Text></p>
                         ))}
                         </Card>
                     </Space>
@@ -62,7 +73,7 @@ const Dashboard = ({dataDashboard, dataTrades, dataOrders, dataHistory, dataPlan
                         extra={<Link to='/history'><Button>View more</Button></Link>}
                         >
                         {dataHistory && dataHistory.map((trade) => (
-                            <p><Text strong>{trade.trade_id + ". " + trade.pair}</Text>: {trade.close_profit_abs.toString().substring(0,6) + " (" + trade.profit_pct + "%)"}</p>
+                            <p><Text strong type={computeTextStyleByProfitPercent(trade.profit_pct)}>{trade.trade_id + ". " + trade.pair}</Text><Text type={computeTextStyleByProfitPercent(trade.profit_pct)}>: {trade.close_profit_abs.toString().substring(0,6) + " (" + trade.profit_pct + "%)"}</Text></p>
                         ))}
                         </Card>
                     </Space>
