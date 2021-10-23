@@ -62,7 +62,7 @@ const Dashboard = ({dataDashboard, dataTrades, dataOrders, dataHistory, dataPlan
                         extra={<Link to='/orders'><Button>View more</Button></Link>}
                         >
                         {dataOrders && dataOrders.map((order) => (
-                            <p><Text strong>{order.o_currency.replace("_", "/") + " (" + order.o_type + ")"}</Text>: {order.o_limitPrice.toString().substring(0,6) + " / " + order.o_lastPrice.toString().substring(0,6)}</p>
+                            <p><Text strong type={computeTextStyleByProfitPercent(order.o_diffPricePercent)}>{order.o_currency.replace("_", "/") + " (" + order.o_type + ")"}</Text><Text type={computeTextStyleByProfitPercent(order.o_diffPricePercent)}>:{order.o_limitPrice.toString().substring(0,6) + " / " + order.o_lastPrice.toString().substring(0,6) + "(" + order.o_diffPricePercent + "%)"}</Text></p>
                         ))}
                         </Card>
                     </Space>

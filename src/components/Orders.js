@@ -22,6 +22,17 @@ const Orders = ({data, apiEndpoint}) => {
         message.error('Click on No');
     }
 
+    const computeTextStyleByProfitPercent = (percent) => {
+        const num = Number(percent);
+        if (num > 0) {
+            return 'success'
+        } else if (num <= 0 && num > -5) {
+            return 'warning'
+        } else {
+            return "danger"
+        }
+    }
+
     return (
         <>
             <Row>
@@ -29,11 +40,10 @@ const Orders = ({data, apiEndpoint}) => {
                     <Col span={6} xs={24} xl={6}>
                     <Space>
                         <Card title={order.o_currency.replace("_", "/") + " (" + order.o_type + ")"} style={{ width: 300 }}>
-                            <p><Text strong>ID</Text>: {order.o_id}</p>
-                            <p><Text strong>Exchange</Text>: {order.o_exchange}</p>
-                            <p><Text strong>Open at</Text>: {order.o_openTime}</p>
-                            <p><Text strong>Rate (USD)</Text>: {order.o_limitPrice.toString().substring(0,6) + " / " + order.o_lastPrice.toString().substring(0,6)}</p>
-                            <p><Text strong>Total (USD)</Text>: {order.o_expectedTotal.toString().substring(0,6) + " / " + order.o_currentTotal.toString().substring(0,6)}</p>
+                            <p><Text strong type={computeTextStyleByProfitPercent(order.o_diffPricePercent)}>ID</Text><Text  type={computeTextStyleByProfitPercent(order.o_diffPricePercent)}>: {order.o_id + " (" + order.o_exchange + ")"}</Text></p>
+                            <p><Text strong type={computeTextStyleByProfitPercent(order.o_diffPricePercent)}>Rate (USD)</Text><Text  type={computeTextStyleByProfitPercent(order.o_diffPricePercent)}>: {order.o_limitPrice.toString().substring(0,6) + " / " + order.o_lastPrice.toString().substring(0,6)}</Text></p>
+                            <p><Text strong type={computeTextStyleByProfitPercent(order.o_diffPricePercent)}>Total (USD)</Text><Text  type={computeTextStyleByProfitPercent(order.o_diffPricePercent)}>: {order.o_expectedTotal.toString().substring(0,6) + " / " + order.o_currentTotal.toString().substring(0,6)}</Text></p>
+                            <p><Text strong type={computeTextStyleByProfitPercent(order.o_diffPricePercent)}>Open at</Text><Text  type={computeTextStyleByProfitPercent(order.o_diffPricePercent)}>: {order.o_openTime}</Text></p>
                             <p>
                                 <Space>
                                     <Popconfirm
