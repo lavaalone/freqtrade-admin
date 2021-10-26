@@ -23,8 +23,9 @@ const PlanB = ({data, apiEndpoint}) => {
                     <Space>
                         <Card title={planBOrder.id + ". " + planBOrder.base + "/" + planBOrder.counter} style={{ width: 300 }}>
                             <p><Text strong>Status</Text>: {planBOrder.status}</p>
-                            <p><Text strong>Original Amount</Text>: {planBOrder.originalAmount.toString().substring(0,6)}</p>
-                            <p><Text strong>Original Rate</Text>: {planBOrder.originalOpenRate.toString().substring(0,6)}</p>
+                            <p><Text strong>Original Amount/Rate</Text>: {planBOrder.originalAmount.toString().substring(0,6) + "/" + planBOrder.originalOpenRate.toString().substring(0,6)}</p>
+                            <p><Text strong>New Amount/Rate</Text>: {planBOrder.newAmount.toString().substring(0,6) + "/" + planBOrder.currentOpenRate.toString().substring(0,6)}</p>
+                            <p><Text strong>Estimate profit</Text>: {planBOrder.estimateProfit / 100 + " (" + planBOrder.diffRatePercent + "%)"} </p>
                             <p><Text strong>Open at</Text>: {planBOrder.time}</p>
                             <p>
                                 <Space>
